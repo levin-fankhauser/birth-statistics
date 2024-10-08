@@ -91,6 +91,10 @@ public class Main {
 		int numberOfChildren = scanner.nextInt();
 		long amountOfBirths = service.countMultipleBirths(timeRange.startDate(), timeRange.endDate(), numberOfChildren);
 
+
+		System.out.println("\n======================================");
+		System.out.println("     Ergebnisse für deine Angaben:");
+		System.out.println("======================================\n");
 		if (numberOfChildren == 2) {
 			System.out.println("Anzahl an Zwillingen: " + amountOfBirths);
 		} else if (numberOfChildren == 3) {
@@ -98,10 +102,20 @@ public class Main {
 		} else {
 			System.out.println("Ungültige Eingabe!!!");
 		}
+		System.out.println("===============================\n");
 	}
 
 	public static void functionFour() {
-		System.out.println("Function 4 not implemented yet");
+		TimeRange timeRange = getTimeRange();
+		Map<String, Double> birthByNationality =	service.getAverageChildrenByNationality(timeRange.startDate(), timeRange.endDate());
+
+		System.out.println("\n======================================");
+		System.out.println("     Ergebnisse für den Zeitraum:");
+		System.out.println("======================================\n");
+		birthByNationality.forEach((nationality, count) ->
+				System.out.println(nationality + ": " + count)
+		);
+		System.out.println("===============================\n");
 	}
 
 	public static void functionFive() {

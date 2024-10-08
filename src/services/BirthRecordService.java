@@ -64,4 +64,18 @@ public class BirthRecordService {
 					&& record.anzahl_kinder() != null && record.anzahl_kinder() == numberOfChildren;
 		}).count();
 	}
+
+	public Map<String, Double> getAverageChildrenByNationality(String startDateString, String endDateString) {
+		LocalDate startDate = LocalDate.parse(startDateString, formatter);
+		LocalDate endDate = LocalDate.parse(endDateString, formatter);
+
+		return records.stream().filter(record -> {
+			LocalDate date = LocalDate.parse(record.geburts_datum(), formatter);
+
+			return (date.isEqual(startDate) || date.isAfter(startDate)) && (date.isEqual(endDate) || date.isBefore(endDate));
+		}).collect(Collectors.groupingBy(
+				BirthRecord::name_citizenship_bfs,
+				Collectors.averagingDouble(record -> record.anzahl_kinder() != null ? record.anzahl_kinder() : 1)
+		));
+	}
 }
