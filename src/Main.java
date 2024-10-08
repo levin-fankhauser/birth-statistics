@@ -10,13 +10,13 @@ public class Main {
 		BirthRecordService service = new BirthRecordService("data.json");
 
 		List<BirthRecord> filteredRecords = service.getAll();
-		List<String> listItem = new ArrayList<>();
+		List<String> listItems = new ArrayList<>();
 		filteredRecords.forEach(item -> {
-			if (!listItem.contains(item.name_citizenship_bfs())) {
-				listItem.add(item.name_citizenship_bfs());
+			if (!listItems.contains(item.wohnviertel_name())) {
+				listItems.add(item.wohnviertel_name());
 			}
 		});
-		listItem.forEach(System.out::println);
-		System.out.println("\nAmount of possibilities: " + listItem.size());
+		listItems.forEach(System.out::println);
+		System.out.println("\nAmount of possibilities: " + listItems.size());
 	}
 }
