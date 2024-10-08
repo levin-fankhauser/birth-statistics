@@ -1,33 +1,36 @@
-package deserializer;
+package deserializers;
 
-import com.google.gson.*;
-import models.BirthRecord;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import properties.enums.District;
 
 import java.lang.reflect.Type;
 
-public class BirthRecordDeserializer implements JsonDeserializer<BirthRecord> {
+public class NeighbourhoodDeserializer implements JsonDeserializer<BirthRecord> {
+    @Override
+    public BirthRecord deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        JsonObject jsonObject = json.getAsJsonObject();
 
-	@Override
-	public BirthRecord deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-		JsonObject jsonObject = json.getAsJsonObject();
-
-		return new BirthRecord(
-				jsonObject.get("birth_date").getAsString(),
-				jsonObject.get("year").getAsString(),
-				jsonObject.get("month").getAsInt(),
-				jsonObject.get("weekInYear").getAsInt(),
-				jsonObject.get("startOfWeekDate").getAsString(),
-				jsonObject.get("dayOfYear").getAsInt(),
-				jsonObject.get("weekday").getAsString(),
-				jsonObject.get("gender").getAsString(),
-				jsonObject.get("anzahl_kinder").getAsInt(),
-				jsonObject.get("nationality").getAsString(),
-				jsonObject.get("neighbourhood").getAsString(),
-				jsonObject.get("id").getAsString(),
-				jsonObject.get("neighbourhood_id").getAsInt(),
-				jsonObject.get("genderValue").getAsInt(),
-				jsonObject.get("genderName").getAsString(),
-				jsonObject.get("citizenshipValue").getAsInt(),
-				jsonObject.get("citizenshipName").getAsString());
-	}
+        return new BirthRecord(
+            jsonObject.get("birth_date"),
+            jsonObject.get("year"),
+            jsonObject.get("month"),
+            jsonObject.get("weekInYear"),
+            jsonObject.get("startOfWeekDate"),
+            jsonObject.get("dayOfYear"),
+            jsonObject.get("weekday"),
+            jsonObject.get("gender"),
+            jsonObject.get("anzahl_kinder"),
+            jsonObject.get("nationality"),
+            jsonObject.get("neighbourhood"),
+            jsonObject.get("id"),
+            jsonObject.get("neighbourhood_id"),
+            jsonObject.get("genderValue"),
+            jsonObject.get("genderName"),
+            jsonObject.get("citizenshipValue"),
+            jsonObject.get("citizenshipName"));
+        );
+    }
 }
