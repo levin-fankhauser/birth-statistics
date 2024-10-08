@@ -85,7 +85,19 @@ public class Main {
 	}
 
 	public static void functionThree() {
-		System.out.println("Function 3 not implemented yet");
+		Scanner scanner = new Scanner(System.in);
+		TimeRange timeRange = getTimeRange();
+		System.out.print("Art der Geburt (2 = Zwillinge | 3 = Drillinge) : ");
+		int numberOfChildren = scanner.nextInt();
+		long amountOfBirths = service.countMultipleBirths(timeRange.startDate(), timeRange.endDate(), numberOfChildren);
+
+		if (numberOfChildren == 2) {
+			System.out.println("Anzahl an Zwillingen: " + amountOfBirths);
+		} else if (numberOfChildren == 3) {
+			System.out.println("Anzahl an Drillingen: " + amountOfBirths);
+		} else {
+			System.out.println("Ungültige Eingabe!!!");
+		}
 	}
 
 	public static void functionFour() {

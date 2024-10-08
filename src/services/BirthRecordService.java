@@ -47,13 +47,21 @@ public class BirthRecordService {
 		LocalDate endDate = LocalDate.parse(endDateString, formatter);
 
 		return records.stream().filter(record -> {
-					LocalDate date = LocalDate.parse(record.geburts_datum(), formatter);
+			LocalDate date = LocalDate.parse(record.geburts_datum(), formatter);
 
-					return (date.isEqual(startDate) || date.isAfter(startDate)) && (date.isEqual(endDate) || date.isBefore(endDate));
-				})
-				.collect(Collectors.groupingBy(
-						BirthRecord::wohnviertel_name,
-						Collectors.summingInt(record -> 1)
-				));
+			return (date.isEqual(startDate) || date.isAfter(startDate)) && (date.isEqual(endDate) || date.isBefore(endDate));
+		}).collect(Collectors.groupingBy(BirthRecord::wohnviertel_name, Collectors.summingInt(record -> 1)));
+	}
+
+	public long countMultipleBirths(String startDateString, String endDateString, int numberOfChildren) {
+		LocalDate startDate = LocalDate.parse(startDateString, formatter);
+		LocalDate endDate = LocalDate.parse(endDateString, formatter);
+
+		return records.stream().filter(record -> {
+			LocalDate date = LocalDate.parse(record.geburts_datum(), formatter);
+
+			return (date.isEqual(startDate) || date.isAfter(startDate)) && (date.isEqual(endDate) || date.isBefore(endDate))
+					&& record.anzahl_kinder() != null && record.anzahl_kinder() == numberOfChildren;
+		}).count();
 	}
 }
