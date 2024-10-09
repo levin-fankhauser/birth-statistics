@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class BirthRecordService {
+public class BirthRecordFunctionalService {
 
 	private final List<BirthRecord> records;
 	private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-	public BirthRecordService(String filePath) {
+	public BirthRecordFunctionalService(String filePath) {
 		this.records = JsonUtil.readJsonFile(filePath);
 	}
 

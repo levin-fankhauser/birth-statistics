@@ -21,4 +21,4 @@ Suggested IDE: IntelliJ (Ultimate)
 
 ### Step 3 - Start programm
 
-- Navigate to ```src/Main``` and run current file or class directly
+- Navigate to ```src/FunctionalMain``` or ```src/ImperativeMain``` and run current file or class directly

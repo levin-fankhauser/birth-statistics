@@ -1,13 +1,13 @@
-import services.BirthRecordService;
+import services.BirthRecordFunctionalService;
 import types.BirthCounts;
 import types.TimeRange;
 
 import java.util.Map;
 import java.util.Scanner;
 
-public class Main {
+public class FunctionalMain {
 
-	public static BirthRecordService service = new BirthRecordService("data.json");
+	public static BirthRecordFunctionalService functionalService = new BirthRecordFunctionalService("data.json");
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
@@ -60,7 +60,7 @@ public class Main {
 
 	public static void functionOne() {
 		TimeRange timeRange = getTimeRange();
-		BirthCounts birthCounts = service.getBirthCountsByDateRange(timeRange.startDate(), timeRange.endDate());
+		BirthCounts birthCounts = functionalService.getBirthCountsByDateRange(timeRange.startDate(), timeRange.endDate());
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für den Zeitraum:");
@@ -73,7 +73,7 @@ public class Main {
 
 	public static void functionTwo() {
 		TimeRange timeRange = getTimeRange();
-		Map<String, Integer> birthByNeighbourhood = service.getBirthsByNeighbourhoodByDateRange(timeRange.startDate(), timeRange.endDate());
+		Map<String, Integer> birthByNeighbourhood = functionalService.getBirthsByNeighbourhoodByDateRange(timeRange.startDate(), timeRange.endDate());
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für den Zeitraum:");
@@ -87,7 +87,7 @@ public class Main {
 		TimeRange timeRange = getTimeRange();
 		System.out.print("Art der Geburt (2 = Zwillinge | 3 = Drillinge) : ");
 		int numberOfChildren = scanner.nextInt();
-		long amountOfBirths = service.countMultipleBirths(timeRange.startDate(), timeRange.endDate(), numberOfChildren);
+		long amountOfBirths = functionalService.countMultipleBirths(timeRange.startDate(), timeRange.endDate(), numberOfChildren);
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für deine Angaben:");
@@ -104,7 +104,7 @@ public class Main {
 
 	public static void functionFour() {
 		TimeRange timeRange = getTimeRange();
-		Map<String, Double> birthByNationality = service.getAverageChildrenByNationality(timeRange.startDate(), timeRange.endDate());
+		Map<String, Double> birthByNationality = functionalService.getAverageChildrenByNationality(timeRange.startDate(), timeRange.endDate());
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für den Zeitraum:");
@@ -120,7 +120,7 @@ public class Main {
 		System.out.print("Welchen Wochentag wollen Sie anzeigen (Mo, Di, Mi, Do, Fr, Sa, So, Alle) : ");
 		String day = scanner.nextLine();
 
-		Map<String, Long> birthsByDay = service.getBirthsByDay(day);
+		Map<String, Long> birthsByDay = functionalService.getBirthsByDay(day);
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für deine/n Wochentag/e:");
