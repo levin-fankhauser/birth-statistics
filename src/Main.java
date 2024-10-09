@@ -73,14 +73,12 @@ public class Main {
 
 	public static void functionTwo() {
 		TimeRange timeRange = getTimeRange();
-		Map<String, Integer> birthByNeighbourhood =	service.getBirthsByNeighbourhoodByDateRange(timeRange.startDate(), timeRange.endDate());
+		Map<String, Integer> birthByNeighbourhood = service.getBirthsByNeighbourhoodByDateRange(timeRange.startDate(), timeRange.endDate());
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für den Zeitraum:");
 		System.out.println("======================================\n");
-		birthByNeighbourhood.forEach((neighbourhood, count) ->
-				System.out.println(neighbourhood + ": " + count)
-		);
+		birthByNeighbourhood.forEach((neighbourhood, count) -> System.out.println(neighbourhood + ": " + count));
 		System.out.println("===============================\n");
 	}
 
@@ -90,7 +88,6 @@ public class Main {
 		System.out.print("Art der Geburt (2 = Zwillinge | 3 = Drillinge) : ");
 		int numberOfChildren = scanner.nextInt();
 		long amountOfBirths = service.countMultipleBirths(timeRange.startDate(), timeRange.endDate(), numberOfChildren);
-
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für deine Angaben:");
@@ -107,19 +104,29 @@ public class Main {
 
 	public static void functionFour() {
 		TimeRange timeRange = getTimeRange();
-		Map<String, Double> birthByNationality =	service.getAverageChildrenByNationality(timeRange.startDate(), timeRange.endDate());
+		Map<String, Double> birthByNationality = service.getAverageChildrenByNationality(timeRange.startDate(), timeRange.endDate());
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für den Zeitraum:");
 		System.out.println("======================================\n");
-		birthByNationality.forEach((nationality, count) ->
-				System.out.println(nationality + ": " + count)
-		);
+		birthByNationality.forEach((nationality, count) -> System.out.println(nationality + ": " + count));
 		System.out.println("===============================\n");
 	}
 
 	public static void functionFive() {
-		System.out.println("Function 5 not implemented yet");
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("\n===============================\n");
+		System.out.print("Welchen Wochentag wollen Sie anzeigen (Mo, Di, Mi, Do, Fr, Sa, So, Alle) : ");
+		String day = scanner.nextLine();
+
+		Map<String, Long> birthsByDay = service.getBirthsByDay(day);
+
+		System.out.println("\n======================================");
+		System.out.println("     Ergebnisse für deine/n Wochentag/e:");
+		System.out.println("======================================\n");
+		birthsByDay.forEach((weekday, amount) -> System.out.println(weekday + ": " + amount));
+		System.out.println("===============================\n");
 	}
 
 	public static TimeRange getTimeRange() {

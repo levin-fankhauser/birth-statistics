@@ -6,6 +6,7 @@ import utils.JsonUtil;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,10 +18,6 @@ public class BirthRecordService {
 
 	public BirthRecordService(String filePath) {
 		this.records = JsonUtil.readJsonFile(filePath);
-	}
-
-	public List<BirthRecord> getAll() {
-		return records;
 	}
 
 	public BirthCounts getBirthCountsByDateRange(String startDateString, String endDateString) {
@@ -77,5 +74,19 @@ public class BirthRecordService {
 				BirthRecord::name_citizenship_bfs,
 				Collectors.averagingDouble(record -> record.anzahl_kinder() != null ? record.anzahl_kinder() : 1)
 		));
+	}
+
+	public Map<String, Long> getBirthsByDay(String day) {
+		if (day.equalsIgnoreCase("alle")) {
+			return records.stream()
+					.collect(Collectors.groupingBy(BirthRecord::wochentag, Collectors.counting()));
+		} else {
+			Map<String, Long> result = new HashMap<>();
+			long count = records.stream()
+					.filter(record -> record.wochentag().equalsIgnoreCase(day))
+					.count();
+			result.put(day, count);
+			return result;
+		}
 	}
 }
