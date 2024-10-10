@@ -58,8 +58,10 @@ public class BirthRecordServiceFunctionalImpl implements BirthRecordService {
 		return records.stream().filter(record -> {
 			LocalDate date = LocalDate.parse(record.geburts_datum(), formatter);
 
-			return (date.isEqual(startDate) || date.isAfter(startDate)) && (date.isEqual(endDate) || date.isBefore(endDate))
-					&& record.anzahl_kinder() != null && record.anzahl_kinder() == numberOfChildren;
+			return (date.isEqual(startDate) || date.isAfter(startDate))
+					&& (date.isEqual(endDate) || date.isBefore(endDate))
+					&& record.anzahl_kinder() != null
+					&& record.anzahl_kinder() == numberOfChildren;
 		}).count();
 	}
 
@@ -73,21 +75,21 @@ public class BirthRecordServiceFunctionalImpl implements BirthRecordService {
 			return (date.isEqual(startDate) || date.isAfter(startDate)) && (date.isEqual(endDate) || date.isBefore(endDate));
 		}).collect(Collectors.groupingBy(
 				BirthRecord::name_citizenship_bfs,
-				Collectors.averagingDouble(record -> record.anzahl_kinder() != null ? record.anzahl_kinder() : 1)
-		));
+				Collectors.averagingDouble(record -> record.anzahl_kinder() != null ? record.anzahl_kinder() : 1)));
 	}
 
 	public Map<String, Long> getBirthsByDay(String day) {
 		if (day.equalsIgnoreCase("alle")) {
-			return records.stream()
-					.collect(Collectors.groupingBy(BirthRecord::wochentag, Collectors.counting()));
+			return records.stream().collect(Collectors.groupingBy(BirthRecord::wochentag, Collectors.counting()));
 		} else {
-			Map<String, Long> result = new HashMap<>();
-			long count = records.stream()
-					.filter(record -> record.wochentag().equalsIgnoreCase(day))
-					.count();
-			result.put(day, count);
-			return result;
+			return records.stream().reduce(new HashMap<>(), (map, record) -> {
+				map.put(record.wochentag(), map.getOrDefault(record.wochentag(), 0L) + 1);
+				return map;
+			}, (map1, map2) -> {
+				map2.forEach((key, value) -> map1.merge(key, value, Long::sum));
+				return map1;
+			});
+
 		}
 	}
 }
