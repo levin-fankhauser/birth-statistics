@@ -82,14 +82,10 @@ public class BirthRecordServiceFunctionalImpl implements BirthRecordService {
 		if (day.equalsIgnoreCase("alle")) {
 			return records.stream().collect(Collectors.groupingBy(BirthRecord::wochentag, Collectors.counting()));
 		} else {
-			return records.stream().reduce(new HashMap<>(), (map, record) -> {
-				map.put(record.wochentag(), map.getOrDefault(record.wochentag(), 0L) + 1);
-				return map;
-			}, (map1, map2) -> {
-				map2.forEach((key, value) -> map1.merge(key, value, Long::sum));
-				return map1;
-			});
-
+			Map<String, Long> result = new HashMap<>();
+			long count = records.stream().filter(record -> record.wochentag().equalsIgnoreCase(day)).count();
+			result.put(day, count);
+			return result;
 		}
 	}
 }
