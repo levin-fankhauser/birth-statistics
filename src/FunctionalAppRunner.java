@@ -1,7 +1,7 @@
 import services.BirthRecordService;
-import services.BirthRecordServiceFunctionalImpl;
+import services.impl.BirthRecordServiceFunctionalImpl;
 
-public class FunctionalRunner {
+public class FunctionalAppRunner {
 
 	public static void main(String[] args) {
 		BirthRecordService birthRecordService = new BirthRecordServiceFunctionalImpl("data.json");

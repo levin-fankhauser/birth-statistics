@@ -21,4 +21,4 @@ Suggested IDE: IntelliJ (Ultimate)
 
 ### Step 3 - Start programm
 
-- Navigate to ```src/FunctionalRunner``` or ```src/ImperativeRunner``` and run current file or class directly
+- Navigate to ```src/FunctionalAppRunner``` or ```src/ImperativeAppRunner``` and run current file or class directly
