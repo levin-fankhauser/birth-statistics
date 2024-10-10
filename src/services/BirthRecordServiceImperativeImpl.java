@@ -10,12 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BirthRecordImperativeService {
+public class BirthRecordServiceImperativeImpl implements BirthRecordService {
 
 	private final List<BirthRecord> records;
 	private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-	public BirthRecordImperativeService(String filePath) {
+	public BirthRecordServiceImperativeImpl(String filePath) {
 		this.records = JsonUtil.readJsonFile(filePath);
 	}
 

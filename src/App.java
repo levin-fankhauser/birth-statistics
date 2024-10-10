@@ -1,15 +1,19 @@
-import services.BirthRecordFunctionalService;
+import services.BirthRecordService;
 import types.BirthCounts;
 import types.TimeRange;
 
 import java.util.Map;
 import java.util.Scanner;
 
-public class FunctionalMain {
+public class App {
 
-	public static BirthRecordFunctionalService functionalService = new BirthRecordFunctionalService("data.json");
+	private final BirthRecordService birthRecordService;
 
-	public static void main(String[] args) {
+	public App(BirthRecordService birthRecordService) {
+		this.birthRecordService = birthRecordService;
+	}
+
+	public void start() {
 		Scanner scanner = new Scanner(System.in);
 
 		boolean appRunning = true;
@@ -58,9 +62,9 @@ public class FunctionalMain {
 
 	}
 
-	public static void functionOne() {
+	private void functionOne() {
 		TimeRange timeRange = getTimeRange();
-		BirthCounts birthCounts = functionalService.getBirthCountsByDateRange(timeRange.startDate(), timeRange.endDate());
+		BirthCounts birthCounts = this.birthRecordService.getBirthCountsByDateRange(timeRange.startDate(), timeRange.endDate());
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für den Zeitraum:");
@@ -71,9 +75,11 @@ public class FunctionalMain {
 		System.out.println("===============================\n");
 	}
 
-	public static void functionTwo() {
+	private void functionTwo() {
 		TimeRange timeRange = getTimeRange();
-		Map<String, Integer> birthByNeighbourhood = functionalService.getBirthsByNeighbourhoodByDateRange(timeRange.startDate(), timeRange.endDate());
+		Map<String, Integer> birthByNeighbourhood = this.birthRecordService.getBirthsByNeighbourhoodByDateRange(
+				timeRange.startDate(),
+				timeRange.endDate());
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für den Zeitraum:");
@@ -82,12 +88,12 @@ public class FunctionalMain {
 		System.out.println("===============================\n");
 	}
 
-	public static void functionThree() {
+	private void functionThree() {
 		Scanner scanner = new Scanner(System.in);
 		TimeRange timeRange = getTimeRange();
 		System.out.print("Art der Geburt (2 = Zwillinge | 3 = Drillinge) : ");
 		int numberOfChildren = scanner.nextInt();
-		long amountOfBirths = functionalService.countMultipleBirths(timeRange.startDate(), timeRange.endDate(), numberOfChildren);
+		long amountOfBirths = this.birthRecordService.countMultipleBirths(timeRange.startDate(), timeRange.endDate(), numberOfChildren);
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für deine Angaben:");
@@ -102,9 +108,9 @@ public class FunctionalMain {
 		System.out.println("===============================\n");
 	}
 
-	public static void functionFour() {
+	private void functionFour() {
 		TimeRange timeRange = getTimeRange();
-		Map<String, Double> birthByNationality = functionalService.getAverageChildrenByNationality(timeRange.startDate(), timeRange.endDate());
+		Map<String, Double> birthByNationality = this.birthRecordService.getAverageChildrenByNationality(timeRange.startDate(), timeRange.endDate());
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für den Zeitraum:");
@@ -113,14 +119,14 @@ public class FunctionalMain {
 		System.out.println("===============================\n");
 	}
 
-	public static void functionFive() {
+	private void functionFive() {
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("\n===============================\n");
 		System.out.print("Welchen Wochentag wollen Sie anzeigen (Mo, Di, Mi, Do, Fr, Sa, So, Alle) : ");
 		String day = scanner.nextLine();
 
-		Map<String, Long> birthsByDay = functionalService.getBirthsByDay(day);
+		Map<String, Long> birthsByDay = this.birthRecordService.getBirthsByDay(day);
 
 		System.out.println("\n======================================");
 		System.out.println("     Ergebnisse für deine/n Wochentag/e:");
@@ -129,7 +135,7 @@ public class FunctionalMain {
 		System.out.println("===============================\n");
 	}
 
-	public static TimeRange getTimeRange() {
+	private TimeRange getTimeRange() {
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("\n===============================\n");
