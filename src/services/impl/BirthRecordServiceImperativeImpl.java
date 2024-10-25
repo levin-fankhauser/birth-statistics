@@ -13,15 +13,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Imperative Implementierung des BirthRecordService, die Schleifen verwendet, um Geburtsdatensätze zu analysieren.
+ *
+ * @author levin-fankhauser
+ * @version 1.0
+ */
 public class BirthRecordServiceImperativeImpl implements BirthRecordService {
 
 	private final List<BirthRecord> records;
 	private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+	/**
+	 * Konstruktor, der die JSON-Datei einliest und die Geburtsdaten in die records-Liste initialisiert.
+	 *
+	 * @param filePath Pfad zur JSON-Datei mit den Geburtsdaten
+	 */
 	public BirthRecordServiceImperativeImpl(String filePath) {
 		this.records = JsonUtil.readJsonFile(filePath);
 	}
 
+	@Override
 	public BirthCounts getBirthCountsByDateRange(String startDateString, String endDateString) {
 		LocalDate startDate = LocalDate.parse(startDateString, formatter);
 		LocalDate endDate = LocalDate.parse(endDateString, formatter);
@@ -49,6 +61,7 @@ public class BirthRecordServiceImperativeImpl implements BirthRecordService {
 		return new BirthCounts(maleCount, femaleCount, totalCount);
 	}
 
+	@Override
 	public Map<String, Integer> getBirthsByNeighbourhoodByDateRange(String startDateString, String endDateString) {
 		LocalDate startDate = LocalDate.parse(startDateString, formatter);
 		LocalDate endDate = LocalDate.parse(endDateString, formatter);
@@ -65,6 +78,7 @@ public class BirthRecordServiceImperativeImpl implements BirthRecordService {
 		return birthsByNeighbourhood;
 	}
 
+	@Override
 	public long countMultipleBirths(String startDateString, String endDateString, int numberOfChildren) {
 		LocalDate startDate = LocalDate.parse(startDateString, formatter);
 		LocalDate endDate = LocalDate.parse(endDateString, formatter);
@@ -82,6 +96,7 @@ public class BirthRecordServiceImperativeImpl implements BirthRecordService {
 		return count;
 	}
 
+	@Override
 	public Map<String, Double> getAverageChildrenByNationality(String startDateString, String endDateString) {
 		LocalDate startDate = LocalDate.parse(startDateString, formatter);
 		LocalDate endDate = LocalDate.parse(endDateString, formatter);
@@ -110,6 +125,7 @@ public class BirthRecordServiceImperativeImpl implements BirthRecordService {
 		return averageChildrenByNationality;
 	}
 
+	@Override
 	public Map<String, Long> getBirthsByDay(String day) {
 		Map<String, Long> birthsByDay = new HashMap<>();
 

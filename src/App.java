@@ -5,6 +5,19 @@ import types.TimeRange;
 import java.util.Map;
 import java.util.Scanner;
 
+
+/**
+ * Hauptklasse der Geburtsstatistik-Anwendung.
+ * <p>
+ * Diese Klasse bietet eine Konsolenapplikation für die Analyse von Geburtenstatistiken.
+ * Sie nutzt verschiedene Funktionen des {@link BirthRecordService}-Interfaces,
+ * um Geburtenzahlen basierend auf benutzerdefinierten Eingaben und Filtern anzuzeigen.
+ * <p>
+ * Diese Klasse muss mit der gewünschten Implementierung des {@link BirthRecordService} initialisiert werden, um die App imperativ oder funktional auszuführen!
+ *
+ * @author levin-fankhauser
+ * @version 0.0
+ */
 public class App {
 
 	private final BirthRecordService birthRecordService;

@@ -1,6 +1,15 @@
 import services.BirthRecordService;
 import services.impl.BirthRecordServiceFunctionalImpl;
 
+/**
+ * Hauptstartklasse für die funktionale Geburtsstatistik-Anwendung.
+ * <p>
+ * Diese Klasse initialisiert eine Instanz des {@link BirthRecordServiceFunctionalImpl}
+ * und startet die {@link App}-Klasse, welche die Interaktion mit dem Benutzer über das Konsolenmenü steuert.
+ *
+ * @author levin-fankhauser
+ * @version 2.0
+ */
 public class FunctionalAppRunner {
 
 	public static void main(String[] args) {
