@@ -12,12 +12,18 @@ Suggested IDE: IntelliJ (Ultimate)
  
 #### In IntelliJ:
 
+The ```...\birth-statistics\lib``` should be configured automatically when cloning from GIT.
+
+If not, do the following steps:
+
 - Open ```File / Project Structure```
-- Go to ```Project Settings / Librarys```
-- Click on ```+ / From Maven...```
-- Search for ```google.code.gson```
-- Select version ```2.11.0``` and click ```OK```
+- Go to ```Project Settings / Modules / Dependencies```
+- Click on ```+ / JARS or Directories...```
+- Select ```...\birth-statistics\lib```
 - Apply and save changes
+
+#### In other IDE's:
+- Add the lib folder or JAR Files as a dependency, the way you do it in your IDE.
 
 ### Step 3 - Start programm
 
