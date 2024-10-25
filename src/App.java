@@ -142,7 +142,7 @@ public class App {
 		Map<String, Long> birthsByDay = this.birthRecordService.getBirthsByDay(day);
 
 		System.out.println("\n======================================");
-		System.out.println("     Ergebnisse für deine/n Wochentag/e:");
+		System.out.println("Ergebnisse für deine/n Wochentag/e:");
 		System.out.println("======================================\n");
 		birthsByDay.forEach((weekday, amount) -> System.out.println(weekday + ": " + amount));
 		System.out.println("===============================\n");
