@@ -7,6 +7,7 @@ import java.util.Map;
 /**
  * Interface für den BirthRecordService. Dieser wird einmal imperativ (V 1.0) und einmal funktional (V 2.0) implementiert.
  * @author levin-fankhauser
+ * @author ToppTobi
  * @version 0.0
  */
 public interface BirthRecordService {

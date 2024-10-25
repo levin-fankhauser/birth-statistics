@@ -15,6 +15,7 @@ import java.util.Scanner;
  * Diese Klasse muss mit der gewünschten Implementierung des {@link BirthRecordService} initialisiert werden, um die App imperativ oder funktional auszuführen!
  *
  * @author levin-fankhauser
+ * @author ToppTobi
  * @version 0.0
  */
 public class App {

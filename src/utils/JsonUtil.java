@@ -16,6 +16,7 @@ import java.util.stream.Stream;
  * Die Klasse dient zum Verarbeiten von JSON Daten, speziell für den Datensatz {@link BirthRecord}.
  *
  * @author levin-fankhauser
+ * @author ToppTobi
  * @version 0.0
  */
 public class JsonUtil {

@@ -17,6 +17,7 @@ import java.util.Map;
  * Imperative Implementierung des BirthRecordService, die Schleifen verwendet, um Geburtsdatensätze zu analysieren.
  *
  * @author levin-fankhauser
+ * @author ToppTobi
  * @version 1.0
  */
 public class BirthRecordServiceImperativeImpl implements BirthRecordService {

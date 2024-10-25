@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
  * Funktionale Implementierung des BirthRecordService, die Streams verwendet, um Geburtsdatensätze zu analysieren.
  *
  * @author levin-fankhauser
+ * @author ToppTobi
  * @version 2.0
  */
 public class BirthRecordServiceFunctionalImpl implements BirthRecordService {

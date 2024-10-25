@@ -8,6 +8,7 @@ import services.impl.BirthRecordServiceImperativeImpl;
  * und startet die {@link App}-Klasse, welche die Interaktion mit dem Benutzer über das Konsolenmenü steuert.
  *
  * @author levin-fankhauser
+ * @author ToppTobi
  * @version 1.0
  */
 public class ImperativeAppRunner {
