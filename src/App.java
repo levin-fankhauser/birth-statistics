@@ -5,7 +5,6 @@ import types.TimeRange;
 import java.util.Map;
 import java.util.Scanner;
 
-
 /**
  * Hauptklasse der Geburtsstatistik-Anwendung.
  * <p>
@@ -90,8 +89,7 @@ public class App {
 
 	private void functionTwo() {
 		TimeRange timeRange = getTimeRange();
-		Map<String, Integer> birthByNeighbourhood = this.birthRecordService.getBirthsByNeighbourhoodByDateRange(
-				timeRange.startDate(),
+		Map<String, Integer> birthByNeighbourhood = this.birthRecordService.getBirthsByNeighbourhoodByDateRange(timeRange.startDate(),
 				timeRange.endDate());
 
 		System.out.println("\n======================================");
@@ -144,7 +142,17 @@ public class App {
 		System.out.println("\n======================================");
 		System.out.println("Ergebnisse für deine/n Wochentag/e:");
 		System.out.println("======================================\n");
-		birthsByDay.forEach((weekday, amount) -> System.out.println(weekday + ": " + amount));
+		if (day.equalsIgnoreCase("alle")) {
+			System.out.println("Mo: " + birthsByDay.get("Mo"));
+			System.out.println("Di: " + birthsByDay.get("Di"));
+			System.out.println("Mi: " + birthsByDay.get("Mi"));
+			System.out.println("Do: " + birthsByDay.get("Do"));
+			System.out.println("Fr: " + birthsByDay.get("Fr"));
+			System.out.println("Sa: " + birthsByDay.get("Sa"));
+			System.out.println("So: " + birthsByDay.get("So"));
+		} else {
+			birthsByDay.forEach((weekday, amount) -> System.out.println(weekday + ": " + amount));
+		}
 		System.out.println("===============================\n");
 	}
 
