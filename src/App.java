@@ -94,7 +94,7 @@ public class App {
 				timeRange.endDate());
 
 		System.out.println("\n======================================");
-		System.out.println("     Ergebnisse für den Zeitraum:");
+		System.out.println("Ergebnisse für den Zeitraum:");
 		System.out.println("======================================\n");
 		birthByNeighbourhood.forEach((neighbourhood, count) -> System.out.println(neighbourhood + ": " + count));
 		System.out.println("===============================\n");
@@ -108,7 +108,7 @@ public class App {
 		long amountOfBirths = this.birthRecordService.countMultipleBirths(timeRange.startDate(), timeRange.endDate(), numberOfChildren);
 
 		System.out.println("\n======================================");
-		System.out.println("     Ergebnisse für deine Angaben:");
+		System.out.println("Ergebnisse für deine Angaben:");
 		System.out.println("======================================\n");
 		if (numberOfChildren == 2) {
 			System.out.println("Anzahl an Zwillingen: " + amountOfBirths);
@@ -125,7 +125,7 @@ public class App {
 		Map<String, Double> birthByNationality = this.birthRecordService.getAverageChildrenByNationality(timeRange.startDate(), timeRange.endDate());
 
 		System.out.println("\n======================================");
-		System.out.println("     Ergebnisse für den Zeitraum:");
+		System.out.println("Ergebnisse für den Zeitraum:");
 		System.out.println("======================================\n");
 		birthByNationality.forEach((nationality, count) -> System.out.println(nationality + ": " + count));
 		System.out.println("===============================\n");
